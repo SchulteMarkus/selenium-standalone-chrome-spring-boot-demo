@@ -41,10 +41,16 @@ CONTAINER ID        IMAGE                              ...    PORTS             
 I am describing basic setup here. For details, have a look at [HelloControllerIT.java](src/test/java/schulte/markus/seleniumstandalonechromespringboot/controller/HelloControllerIT.java),
 which is straight-forward.
 
-Selenium provides a docker-image [selenium/standalone-chrome-debug](https://hub.docker.com/r/selenium/standalone-chrome-debug/).
+Selenium provides a docker-image [selenium/standalone-chrome](https://hub.docker.com/r/selenium/standalone-chrome-debug/).
 You can use this docker-image within your test by using [Docker Compose JUnit Rule](https://github.com/palantir/docker-compose-rule).
 You have to use [selenium-java](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-java/), of course. 
 By using [WebDriverManager](https://github.com/bonigarcia/webdrivermanager), there is no need to care for downloading
 a [Selenium WebDriver](http://www.seleniumhq.org/docs/03_webdriver.jsp) yourself.
 
- 
+When running [HelloControllerIT.java](src/test/java/schulte/markus/seleniumstandalonechromespringboot/controller/HelloControllerIT.java),
+a selenium/standalone-chrome -container is started, while this Spring Boot application is 
+launched with a random port on localhost. Now in the test, you can use Selenium-RemoteWebDriver to 
+connect to the running Selenium-Hub within the selenium/standalone-chrome -container. 
+[Selenium/standalone-chrome-debug](https://hub.docker.com/r/selenium/standalone-chrome-debug/) 
+docker-images is used here, so you can access VNC on the running container by accessing the published
+port 5900.
