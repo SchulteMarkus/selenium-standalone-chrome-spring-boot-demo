@@ -10,6 +10,6 @@ public class HelloController {
 
   @GetMapping(ENDPOINT)
   public String index() {
-    return "Greetings from Spring Boot!";
+    return "<h1 id=\"h1-hello\">Hello world!</h1>";
   }
 }

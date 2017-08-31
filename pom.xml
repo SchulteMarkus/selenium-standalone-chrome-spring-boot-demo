@@ -21,8 +21,16 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <selenium.version>3.5.2</selenium.version>
+    <webdrivermanager.version>1.7.1</webdrivermanager.version>
+    <docker-compose-rule-junit4.version>0.32.0</docker-compose-rule-junit4.version>
   </properties>
-
+  <repositories>
+    <repository>
+      <id>palantir-releases</id>
+      <url>https://dl.bintray.com/palantir/releases</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -31,6 +39,24 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.palantir.docker.compose</groupId>
+      <artifactId>docker-compose-rule-junit4</artifactId>
+      <version>${docker-compose-rule-junit4.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

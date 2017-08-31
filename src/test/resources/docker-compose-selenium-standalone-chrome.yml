@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  selenium-standalone-chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444
+      - 5900
