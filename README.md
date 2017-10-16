@@ -7,7 +7,8 @@ Demonstrating [Selenium standalone Chrome](https://github.com/SeleniumHQ/docker-
 You got a [Spring Boot](https://projects.spring.io/spring-boot/) application. You want to 
 integration-test this application with [Selenium](http://www.seleniumhq.org/) using a real browser 
 like [Google Chrome](https://www.google.de/chrome/browser/desktop/index.html). You are using 
-[Docker](https://www.docker.com/), but you **don't have an OperatingSystem-GUI available**.
+[Docker](https://www.docker.com/)([-compose](https://docs.docker.com/compose/)), but you 
+**don't have an OperatingSystem-GUI available**.
 
 ## Demo setup
 
@@ -20,7 +21,7 @@ The application is very simple, it serves */* as a "Hello World"-endpoint, see
 
 **Required**
 - [Maven](https://maven.apache.org/)
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/), including [Docker-compose](https://docs.docker.com/compose/)
 
 ```bash
 selenium-standalone-chrome-spring-boot-demo $ mvn verify
