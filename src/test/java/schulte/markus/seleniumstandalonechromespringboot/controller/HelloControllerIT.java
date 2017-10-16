@@ -75,7 +75,7 @@ public class HelloControllerIT {
   }
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws MalformedURLException {
     /*
      * Chrome runs within a docker-container, but the actual Spring Boot application is executed
      * on host. So, Chrome has to test against host-address.
