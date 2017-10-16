@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.6.RELEASE</version>
+    <version>1.5.7.RELEASE</version>
   </parent>
   <prerequisites>
     <maven>3.3.9</maven>
@@ -21,9 +21,9 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <selenium.version>3.5.2</selenium.version>
-    <webdrivermanager.version>1.7.1</webdrivermanager.version>
-    <docker-compose-rule-junit4.version>0.32.0</docker-compose-rule-junit4.version>
+    <selenium.version>3.6.0</selenium.version>
+    <webdrivermanager.version>1.7.2</webdrivermanager.version>
+    <docker-compose-rule-junit4.version>0.32.1</docker-compose-rule-junit4.version>
   </properties>
   <repositories>
     <repository>
