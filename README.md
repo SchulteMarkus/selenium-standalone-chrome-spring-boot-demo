@@ -1,4 +1,7 @@
-# [Selenium standalone Chrome / Spring Boot demo](https://github.com/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo) [![Build Status](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo)
+# [Selenium standalone Chrome / Spring Boot demo](https://github.com/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo) 
+[![Build Status](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo)
+[![Checkstyle count](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo/master/checkstyle/count.svg)](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo/master/checkstyle/index.html)
+
 Demonstrating [Selenium standalone Chrome](https://github.com/SeleniumHQ/docker-selenium/tree/master/StandaloneChromeDebug) in a 
 [Spring Boot](https://projects.spring.io/spring-boot/) project.
 
