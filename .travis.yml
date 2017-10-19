@@ -4,4 +4,7 @@ jdk:
 sudo: required
 services:
   - docker
-script: "mvn verify"
+script: mvn verify
+after_success:
+  - mvn versions:display-dependency-updates
+  - mvn versions:display-plugin-updates
