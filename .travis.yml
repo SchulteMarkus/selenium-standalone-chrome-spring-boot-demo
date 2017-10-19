@@ -7,7 +7,31 @@ cache:
 sudo: required
 services:
   - docker
+env:
+  global:
+    - ARTIFACTS_S3_BUCKET=schultedev-xml-metrics-to-html
+    - S3_KEY_PREFIX=github/$TRAVIS_REPO_SLUG
+    - CHECKSTYLE_HTML_REPORT_DIR=target/checkstyle-html-report
+addons:
+  artifacts:
+    working_dir: $CHECKSTYLE_HTML_REPORT_DIR
+    paths:
+      - $(ls $CHECKSTYLE_HTML_REPORT_DIR | tr "\n" ":")
+    target_paths: $S3_KEY_PREFIX/$TRAVIS_COMMIT/checkstyle/:$S3_KEY_PREFIX/$TRAVIS_BRANCH/checkstyle/
+
+before_script:
+  - mkdir $CHECKSTYLE_HTML_REPORT_DIR
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker pull schultedev/checkstyle-xml-to-html
 script: mvn verify
 after_success:
   - mvn versions:display-dependency-updates
   - mvn versions:display-plugin-updates
+  - mvn checkstyle:checkstyle
+  - docker run --rm
+      -v $TRAVIS_BUILD_DIR/target/checkstyle-result.xml:/checkstyle-result.xml:ro
+      -v $TRAVIS_BUILD_DIR/$CHECKSTYLE_HTML_REPORT_DIR:/tmp/checkstyle-html-report/
+      schultedev/checkstyle-xml-to-html:latest
+  - "curl -s -o /dev/null -w \"%{http_code}\" -H \"Authorization: token $GH_MS_API_PERSONAL_ACCESS_TOKEN\"
+      -d \"{\\\"state\\\": \\\"success\\\", \\\"description\\\": \\\"Checkstyle HTML report\\\", \\\"context\\\": \\\"schultedev/Checkstyle\\\", \\\"target_url\\\": \\\"https://s3.amazonaws.com/$ARTIFACTS_S3_BUCKET/$S3_KEY_PREFIX/$TRAVIS_COMMIT/checkstyle/index.html\\\"}\"
+      https://api.github.com/repos/$TRAVIS_REPO_SLUG/statuses/$TRAVIS_COMMIT"
