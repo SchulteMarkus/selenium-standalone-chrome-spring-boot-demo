@@ -18,8 +18,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -84,7 +84,7 @@ public class HelloControllerIT {
   }
 
   @Test
-  public void getHello() throws Exception {
+  public void getHello() {
     driver.get(base.toString());
 
     final WebElement h1Element = driver.findElement(By.id("h1-hello"));

@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.7.RELEASE</version>
+    <version>2.0.2.RELEASE</version>
   </parent>
   <prerequisites>
     <maven>3.3.9</maven>
@@ -21,10 +21,11 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <selenium.version>3.6.0</selenium.version>
-    <webdrivermanager.version>1.7.2</webdrivermanager.version>
-    <docker-compose-rule-junit4.version>0.32.1</docker-compose-rule-junit4.version>
-    <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
+    <selenium.version>3.12.0</selenium.version>
+    <webdrivermanager.version>2.2.1</webdrivermanager.version>
+    <docker-compose-rule-junit4.version>0.33.0</docker-compose-rule-junit4.version>
+    <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
+    <puppycrawl-checkstyle.version>8.9</puppycrawl-checkstyle.version>
   </properties>
   <repositories>
     <repository>
@@ -81,6 +82,13 @@
       <plugin>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven.checkstyle.plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${puppycrawl-checkstyle.version}</version>
+          </dependency>
+        </dependencies>
         <configuration>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
           <configLocation>google_checks.xml</configLocation>
