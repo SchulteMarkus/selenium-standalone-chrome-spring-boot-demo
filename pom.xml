@@ -22,7 +22,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <selenium.version>3.12.0</selenium.version>
-    <webdrivermanager.version>2.2.1</webdrivermanager.version>
+    <webdrivermanager.version>2.2.2</webdrivermanager.version>
     <docker-compose-rule-junit4.version>0.33.0</docker-compose-rule-junit4.version>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
     <puppycrawl-checkstyle.version>8.9</puppycrawl-checkstyle.version>
