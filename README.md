@@ -17,7 +17,7 @@ like [Google Chrome](https://www.google.de/chrome/browser/desktop/index.html). Y
 
 For this demo, [Spring Boot](https://projects.spring.io/spring-boot/) is used, which ships with a lot
 of [build-in integration-test features](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/integration-testing.html).
-The application is very simple, it serves */* as a "Hello World"-endpoint, see 
+The application is very simple, it serves *http://localhost:8080/* as a "Hello World"-endpoint, see 
 [HelloController.java](src/main/java/schulte/markus/seleniumstandalonechromespringboot/controller/HelloController.java).
 
 ## Demo usage
