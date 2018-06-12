@@ -1,15 +1,17 @@
 package schulte.markus.seleniumstandalonechromespringboot.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class HelloController {
 
-  private static final String ENDPOINT = "/";
-
-  @GetMapping(ENDPOINT)
+  @GetMapping
+  @ResponseBody
   public String index() {
-    return "<h1 id=\"h1-hello\">Hello world!</h1>";
+    return "<!DOCTYPE html><html lang=\"en\">"
+      + "<head><title>Selenium standalone Chrome / Spring Boot demo</title></head>"
+      + "<body><h1 id=\"h1-hello\">Hello world!</h1>";
   }
 }
