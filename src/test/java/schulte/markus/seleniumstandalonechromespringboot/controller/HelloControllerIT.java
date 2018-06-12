@@ -1,7 +1,6 @@
 package schulte.markus.seleniumstandalonechromespringboot.controller;
 
 import com.palantir.docker.compose.DockerComposeRule;
-import com.palantir.docker.compose.connection.DockerPort;
 import com.palantir.docker.compose.connection.waiting.HealthChecks;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import java.net.MalformedURLException;
@@ -15,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +23,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HelloControllerIT {
+
+  @ClassRule
+  public static final DockerComposeRule DOCKER_COMPOSE_RULE = DockerComposeRule.builder()
+    .file(HelloControllerIT.DOCKER_COMPOSE_YML_FILE)
+    .pullOnStartup(true)
+    .waitingForService(HelloControllerIT.SELENIUM_STANDALONE_CHROME_SERVICE_NAME,
+      HealthChecks.toRespond2xxOverHttp(HelloControllerIT.SELENIUM_HUB_PORT,
+        (port) -> port.inFormat("http://$HOST:$EXTERNAL_PORT")))
+    .build();
 
   /**
    * IP of docker0 network on docker-host.
@@ -41,15 +48,6 @@ public class HelloControllerIT {
   private static final String SELENIUM_STANDALONE_CHROME_SERVICE_NAME
     = "selenium-standalone-chrome";
 
-  @ClassRule
-  public static final DockerComposeRule DOCKER_COMPOSE_RULE = DockerComposeRule.builder()
-    .file(DOCKER_COMPOSE_YML_FILE)
-    .pullOnStartup(true)
-    .waitingForService(SELENIUM_STANDALONE_CHROME_SERVICE_NAME,
-      HealthChecks.toRespond2xxOverHttp(SELENIUM_HUB_PORT,
-        (port) -> port.inFormat("http://$HOST:$EXTERNAL_PORT")))
-    .build();
-
   private static WebDriver driver;
 
   @LocalServerPort
@@ -61,17 +59,20 @@ public class HelloControllerIT {
   public static void initWebDriver() throws MalformedURLException {
     ChromeDriverManager.getInstance().setup();
 
-    final DockerPort seleniumStandaloneDockerPort = DOCKER_COMPOSE_RULE.containers()
-      .container(SELENIUM_STANDALONE_CHROME_SERVICE_NAME).port(SELENIUM_HUB_PORT);
-    final String remoteSeleniumUrl
+    final var seleniumStandaloneDockerPort = HelloControllerIT.DOCKER_COMPOSE_RULE
+      .containers()
+      .container(HelloControllerIT.SELENIUM_STANDALONE_CHROME_SERVICE_NAME)
+      .port(HelloControllerIT.SELENIUM_HUB_PORT);
+    final var remoteSeleniumUrl
       = seleniumStandaloneDockerPort.inFormat("http://$HOST:$EXTERNAL_PORT/wd/hub");
 
-    driver = new RemoteWebDriver(new URL(remoteSeleniumUrl), DesiredCapabilities.chrome());
+    HelloControllerIT.driver
+      = new RemoteWebDriver(new URL(remoteSeleniumUrl), DesiredCapabilities.chrome());
   }
 
   @AfterClass
   public static void closeWebDriver() {
-    driver.close();
+    HelloControllerIT.driver.close();
   }
 
   @Before
@@ -80,14 +81,14 @@ public class HelloControllerIT {
      * Chrome runs within a docker-container, but the actual Spring Boot application is executed
      * on host. So, Chrome has to test against host-address.
      */
-    this.base = new URL("http://" + DOCKER0_IP + ":" + port);
+    this.base = new URL("http://" + HelloControllerIT.DOCKER0_IP + ":" + this.port);
   }
 
   @Test
   public void getHello() {
-    driver.get(base.toString());
+    HelloControllerIT.driver.get(this.base.toString());
 
-    final WebElement h1Element = driver.findElement(By.id("h1-hello"));
+    final var h1Element = HelloControllerIT.driver.findElement(By.id("h1-hello"));
     Assert.assertEquals("Hello world!", h1Element.getText());
   }
 }
