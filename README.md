@@ -1,4 +1,5 @@
-# [Selenium standalone Chrome / Spring Boot demo](https://github.com/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo) 
+# [Selenium standalone Chrome / Spring Boot demo](https://github.com/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo)
+[![Gitter](https://badges.gitter.im/selenium-standalone-chrome-spring-boot-demo.svg)](https://gitter.im/selenium-standalone-chrome-spring-boot-demo/Lobby)
 [![Build Status](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo.svg?branch=master)](https://travis-ci.org/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo)
 [![Checkstyle count](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo/master/checkstyle/count.svg)](https://s3.amazonaws.com/schultedev-xml-metrics-to-html/github/SchulteMarkus/selenium-standalone-chrome-spring-boot-demo/master/checkstyle/index.html)
 
